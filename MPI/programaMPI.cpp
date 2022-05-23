@@ -5,12 +5,13 @@
 #include <stdio.h>
 #include <math.h>
 #include <algorithm>
+#include <mpi.h>
 
 #define ARCHIVO "../pruebas.csv"
 
 using namespace std;
 
-int main(int argc, char *argv[]) {
+int main() {
 
     //Presentación grupo
     cout << "Taller N°1 Computación Paralela y Distribuida" << endl;
@@ -25,12 +26,19 @@ int main(int argc, char *argv[]) {
     string linea, token, p1, p2, p3, p4 ,p5, p6, p7, p8, p9, p10, p11, p12;
     string respuestaPrueba[12] = {"A", "E", "C", "B", "B", "D", "A", "B", "E", "C", "B", "D"};
     char separador = ';';
+    int rango;
+    int proceso;
     clock_t tiempoTotal;
     getline(archivo, linea);
     cout << "Inicio del programa..." << endl;
     tiempoTotal = clock();
 
     //Comienzo de la función
+
+    MPI_Init(&argc, &argv);
+    MPI_Comm_size(MPI_COMM_WORLD, &proceso);
+    MPI_Comm_rank(MPI_COMM_WORLD, &rango);
+
     while(getline(archivo, linea)){
         int correctas = 0;
         int incorrectas = 0;
@@ -104,5 +112,6 @@ int main(int argc, char *argv[]) {
     //Fin programa
     cout << "Fin del programa." << endl;
     cout << "Tiempo de ejecución: " << (float)tiempoTotal/60 << " minutos" << endl;
+    MPI_Finalize();
     return 0;
 }

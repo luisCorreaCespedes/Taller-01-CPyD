@@ -11,7 +11,7 @@
 
 using namespace std;
 
-int main() {
+int main(int argc, char *argv[]) {
 
     //Presentación grupo
     cout << "Taller N°1 Computación Paralela y Distribuida" << endl;

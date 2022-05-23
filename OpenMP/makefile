@@ -1,6 +1,6 @@
 CC = g++
 OBJ = programaOMP.cpp
-LIB = 
+LIB = -fopenmp
 CPPFLAGS = -Wall
 
 all: $(OBJ)
